@@ -1,0 +1,2 @@
+# ResultBack
+startActivityForResult回调封装，解放onActivityResult维护繁琐
