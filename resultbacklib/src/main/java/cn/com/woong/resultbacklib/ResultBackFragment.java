@@ -7,17 +7,12 @@ import android.os.Bundle;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.subjects.PublishSubject;
-
 /**
  * Created by woong on 2017/01/23.
  * @author woong
  */
 public class ResultBackFragment extends Fragment {
-    private Map<Integer, PublishSubject<ResultInfo>> mSubjects = new HashMap<>();
+    private Map<Integer, ResultBack.Callback> mCallbacks = new HashMap<>();
 
     public ResultBackFragment() {
     }
@@ -28,25 +23,18 @@ public class ResultBackFragment extends Fragment {
         setRetainInstance(true);
     }
 
-    public Observable<ResultInfo> startForResult(final Intent intent) {
-        final PublishSubject<ResultInfo> subject = PublishSubject.create();
-        return subject.doOnSubscribe(new Consumer<Disposable>() {
-            @Override
-            public void accept(Disposable disposable) throws Exception {
-                mSubjects.put(subject.hashCode(), subject);
-                startActivityForResult(intent, subject.hashCode());
-            }
-        });
+    public void startForResult(Intent intent, ResultBack.Callback callback) {
+        mCallbacks.put(callback.hashCode(), callback);
+        startActivityForResult(intent, callback.hashCode());
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //rxjava方式的处理
-        PublishSubject<ResultInfo> subject = mSubjects.remove(requestCode);
-        if (subject != null) {
-            subject.onNext(new ResultInfo(resultCode, data));
-            subject.onComplete();
+        //callback方式的处理
+        ResultBack.Callback callback = mCallbacks.remove(requestCode);
+        if (callback != null) {
+            callback.onActivityResult(new ResultInfo(resultCode, data));
         }
     }
 }

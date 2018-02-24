@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import cn.com.woong.resultbacklib.ResultBack;
 import cn.com.woong.resultbacklib.ResultInfo;
-import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
     Button btnFailed;
@@ -33,18 +32,17 @@ public class MainActivity extends AppCompatActivity {
         btnFailed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mResultBack.startForResult(ResultFailedActivity.class)
-                        .subscribe(new Consumer<ResultInfo>() {
-                            @Override
-                            public void accept(ResultInfo resultInfo) throws Exception {
-                                int resultCode = resultInfo.getResultCode();
-                                Intent data = resultInfo.getData();
+                mResultBack.startForResult(ResultFailedActivity.class, new ResultBack.Callback() {
+                    @Override
+                    public void onActivityResult(ResultInfo resultInfo) {
+                        int resultCode = resultInfo.getResultCode();
+                        Intent data = resultInfo.getData();
 
-                                if (resultCode == RESULT_CANCELED) {
-                                    Toast.makeText(MainActivity.this, "Result failed back", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                        if (resultCode == RESULT_CANCELED) {
+                            Toast.makeText(MainActivity.this, "Result failed back", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
@@ -54,19 +52,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ResultSuccessActivity.class);
                 intent.putExtra("success", false);
 
-                mResultBack.startForResult(intent)
-                        .subscribe(new Consumer<ResultInfo>() {
-                            @Override
-                            public void accept(ResultInfo resultInfo) throws Exception {
-                                int resultCode = resultInfo.getResultCode();
-                                Intent data = resultInfo.getData();
+                mResultBack.startForResult(intent, new ResultBack.Callback() {
+                    @Override
+                    public void onActivityResult(ResultInfo resultInfo) {
+                        int resultCode = resultInfo.getResultCode();
+                        Intent data = resultInfo.getData();
 
-                                if (resultCode == RESULT_OK && data != null) {
-                                    boolean result= data.getBooleanExtra("result", false);
-                                    Toast.makeText(MainActivity.this, "result == " + result, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                        if (resultCode == RESULT_OK && data != null) {
+                            boolean result= data.getBooleanExtra("result", false);
+                            Toast.makeText(MainActivity.this, "result == " + result, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }

@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 
-import io.reactivex.Observable;
 
 /**
  * Created by woong on 2017/01/23.
@@ -41,12 +40,16 @@ public class ResultBack {
         return (ResultBackFragment) activity.getFragmentManager().findFragmentByTag(TAG);
     }
 
-    public Observable<ResultInfo> startForResult(Intent intent) {
-        return mResultBackFragment.startForResult(intent);
+    public void startForResult(Intent intent, Callback callback) {
+        mResultBackFragment.startForResult(intent, callback);
     }
 
-    public Observable<ResultInfo> startForResult(Class<?> clazz) {
+    public void startForResult(Class<?> clazz, Callback callback) {
         Intent intent = new Intent(mResultBackFragment.getActivity(), clazz);
-        return startForResult(intent);
+        startForResult(intent, callback);
+    }
+
+    public interface Callback {
+        void onActivityResult(ResultInfo resultInfo);
     }
 }
