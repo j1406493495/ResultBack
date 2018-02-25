@@ -11,12 +11,14 @@
         android:id="@+id/btn_failed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Activity1 回调失败"/>
+        android:text="@string/result_failed"
+        android:textAllCaps="false"/>
 
     <Button
         android:id="@+id/btn_success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Activity2 回调成功"/>
+        android:text="@string/result_success"
+        android:textAllCaps="false"/>
 </LinearLayout>
