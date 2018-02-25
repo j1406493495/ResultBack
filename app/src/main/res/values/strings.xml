@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ResultBackDemo</string>
+    <string name="result_failed">Activity1 回调失败</string>
+    <string name="result_success">Activity2 回调成功</string>
 </resources>
