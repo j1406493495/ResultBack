@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
@@ -31,4 +32,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
+publish {
+    userOrg = 'woong'          //bintray.com用户名
+    groupId = 'com.woong'      //jcenter上的路径
+    artifactId = 'ResultBack'            //项目名称
+    publishVersion = '1.0.0'        //版本号
+    desc = ''                  //描述，不重要
+    website = ''               //网站，不重要
 }
