@@ -1,7 +1,7 @@
 # ResultBack
 仿照RxPermissions中封装Fragment发起请求的方式，对startActivityForResult和onActivityResult进行封装，即为今天我要介绍的项目[ResultCallBack](https://github.com/j1406493495/ResultBack)，
 
-Github地址：https://github.com/j1406493495/ResultBack。
+RxPermissions项目源码的解析可见我的个人网站文章：
 
 其中master分支为非RxJava版本，rxjava分支为RxJava版本。
 
