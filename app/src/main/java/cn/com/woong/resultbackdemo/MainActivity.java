@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 .flatMap(new Function<Object, Observable<ResultInfo>>() {
                     @Override
                     public Observable<ResultInfo> apply(Object o) throws Exception {
-                        return mResultBack.startForResult(ResultFailedActivity.class);
+                        return new ResultBack(MainActivity.this).startForResult(ResultFailedActivity.class);
                     }
                 })
                 .subscribe(new Consumer<ResultInfo>() {
