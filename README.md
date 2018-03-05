@@ -82,7 +82,7 @@ RxView.clicks(btnSuccess)
         });
 ```
 
-###### Fragment请求源码分析
+##### Fragment请求源码分析
 
 ```
 private Map<Integer, PublishSubject<ResultInfo>> mSubjects = new HashMap<>();
@@ -116,6 +116,10 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 
 
+---
+
 本文由 [Woong](http://woong.com.cn/) 创作，采用 [知识共享署名4.0](https://creativecommons.org/licenses/by/4.0/) 国际许可协议进行许可
+
 本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名
+
 最后编辑时间为:2018-03-04 00:00:00
