@@ -7,27 +7,27 @@ import android.content.Intent;
  * @author woong
  */
 public class ResultInfo {
-    private int resultCode;
-    private Intent data;
+private int resultCode;
+private Intent data;
 
-    public ResultInfo(int resultCode, Intent data) {
-        this.resultCode = resultCode;
-        this.data = data;
-    }
+public ResultInfo(int resultCode, Intent data) {
+    this.resultCode = resultCode;
+    this.data = data;
+}
 
-    public int getResultCode() {
-        return resultCode;
-    }
+public int getResultCode() {
+    return resultCode;
+}
 
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
-    }
+public void setResultCode(int resultCode) {
+    this.resultCode = resultCode;
+}
 
-    public Intent getData() {
-        return data;
-    }
+public Intent getData() {
+    return data;
+}
 
-    public void setData(Intent data) {
+public void setData(Intent data) {
         this.data = data;
     }
 }
